@@ -1,0 +1,41 @@
+{
+  "name": "collabvm.js",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "Use discord.js but easily for beginners",
+  "keywords": [
+    "collabvm",
+    "computernewb",
+    "npm",
+    "ts",
+    "typescript"
+  ],
+  "type": "commonjs",
+  "homepage": "https://github.com/befaci03/CollabVM.js#readme",
+  "bugs": {
+    "url": "https://github.com/befaci03/CollabVM.js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/befaci03/CollabVM.js.git"
+  },
+  "license": "GNU",
+  "author": "Befaci",
+  "scripts": {
+    "build": "tsc",
+    "test": "node tests/example.js",
+    "dev": "tsc -w",
+    "publish": "npm publish --access public",
+    "publish-prerls": "npm publish --access public --tag prerelease"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/typescript": "^0.4.29",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "websocket": "^1.0.35"
+  }
+}
