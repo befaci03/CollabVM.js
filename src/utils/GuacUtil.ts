@@ -1,5 +1,5 @@
 // https://github.com/computernewb/collab-vm-1.2-webapp/blob/master/src/ts/protocol/Guacutils.ts
-function decode(string) {
+export function decode(string: string) {
 	if (typeof string !== 'string') return [];
 
 	let pos = -1;
@@ -28,7 +28,7 @@ function decode(string) {
 	return sections;
 }
 
-function encode(string) {
+export function encode(string: string[]) {
 	let command = '';
 
 	for (let i = 0; i < string.length; i++) {
@@ -37,5 +37,3 @@ function encode(string) {
 		command += i < string.length - 1 ? ',' : ';';
 	} return command;
 }
-
-module.exports = { encode, decode };

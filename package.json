@@ -32,6 +32,7 @@
   "devDependencies": {
     "@types/node": "^24.0.0",
     "@types/typescript": "^0.4.29",
+    "@types/websocket": "^1.0.10",
     "typescript": "^5.8.3"
   },
   "dependencies": {
