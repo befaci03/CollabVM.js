@@ -54,7 +54,7 @@ export class Client {
                                     msg.slice(2).forEach((val, i) => {
                                         const type = i % 2;
                                         usr.push(val);
-                                        if (type === 2) { isMultiple = usr ;  }
+                                        if (type === 2) { isMultiple = usr ; usr = [] }
                                     });
                                 }
                                 const users = isMultiple ? isMultiple : [msg[2], msg[3]]
