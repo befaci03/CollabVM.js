@@ -27,8 +27,11 @@ export function decode(string: string) {
 
 	return sections;
 }
-
-export function encode(string: string[]) {
+/*
++ export function encode(...string: string[]) {
+- export function encode(string: string[]) {
+*/
+export function encode(...string: string[]) {
 	let command = '';
 
 	for (let i = 0; i < string.length; i++) {

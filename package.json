@@ -1,6 +1,6 @@
 {
   "name": "collabvm.js",
-  "version": "1.0.0",
+  "version": "0.6.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Use discord.js but easily for beginners",
@@ -24,19 +24,19 @@
   "author": "Befaci",
   "scripts": {
     "build": "tsc",
-    "test": "node tests/example.js",
+    "test": "tsc && node tests/example.js",
     "dev": "tsc -w",
     "publish": "npm publish --access public",
     "publish-prerls": "npm publish --access public --tag prerelease"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
-    "@types/typescript": "^0.4.29",
     "@types/websocket": "^1.0.10",
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "chalk": "^5.4.1",
+    "html-entities": "^2.6.0",
     "websocket": "^1.0.35"
   }
 }

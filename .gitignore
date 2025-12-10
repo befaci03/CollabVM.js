@@ -1,12 +1,6 @@
-# tests
-tests
-
 # package manager
 node_modules
 package-lock.json
 
 # dist
 dist
-
-# non-example thing thing
-*.config.*

@@ -1,6 +1,6 @@
 import { Chalk, ChalkInstance } from "chalk";
 
-export class Logger {
+export default class Logger {
     private c: ChalkInstance;
     private msgstart: string;
     constructor() { this.c = new Chalk(); this.msgstart = `CollabVM.js: [{Logging.LEVEL.text}] ` }
