@@ -52,13 +52,17 @@ export class Client {
                                     isMultiple = [];
                                     let usr:any[] = [];
                                     msg.slice(2).forEach((val, i) => {
-                                        const type = i % 2;
                                         usr.push(val);
-                                        if (type === 2) { isMultiple = usr ; usr = [] }
+                                        if ((i + 1) % 2 === 0) {
+                                            //@ts-ignore
+                                            isMultiple.push(usr);
+                                            usr = [];
+                                        }
                                     });
+                                } else {
+                                    const users = isMultiple ? isMultiple : [msg[2], msg[3]]
+                                    this.events.get("join")?.(users);
                                 }
-                                const users = isMultiple ? isMultiple : [msg[2], msg[3]]
-                                this.events.get("join")?.(users);
                                 break;
                             case "remuser":
                                 if(parseFloat(msg[1]) > 1) break;

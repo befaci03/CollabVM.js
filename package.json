@@ -1,6 +1,6 @@
 {
   "name": "collabvm.js",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Use discord.js but easily for beginners",
@@ -26,8 +26,7 @@
     "build": "tsc",
     "test": "tsc && node tests/example.js",
     "dev": "tsc -w",
-    "publish": "npm publish --access public",
-    "publish-prerls": "npm publish --access public --tag prerelease"
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
