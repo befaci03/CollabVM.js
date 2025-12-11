@@ -46,23 +46,16 @@ export class Client {
                                 this.events.get("chat")?.(htmlToPlainText(msg[2]), msg[1]);
                                 break;
                             case "adduser":
-                                const usrcount = parseFloat(msg[1]);
-                                let isMultiple: boolean|any[] = false
-                                if (usrcount > 1) {
-                                    isMultiple = [];
-                                    let usr:any[] = [];
-                                    msg.slice(2).forEach((val, i) => {
-                                        usr.push(val);
-                                        if ((i + 1) % 2 === 0) {
-                                            //@ts-ignore
-                                            isMultiple.push(usr);
-                                            usr = [];
-                                        }
-                                    });
-                                } else {
-                                    const users = isMultiple ? isMultiple : [msg[2], msg[3]]
-                                    this.events.get("join")?.(users);
+                                const count = Number(msg[1]);
+                                const users = [];
+
+                                for (let i = 0; i < count; i++) {
+                                    const username = msg[2 + i*2];
+                                    const rank = Number(msg[3 + i*2]);
+                                    users.push([username, rank]);
                                 }
+
+                                this.events.get("join")?.(users);
                                 break;
                             case "remuser":
                                 if(parseFloat(msg[1]) > 1) break;
