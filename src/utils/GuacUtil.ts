@@ -35,8 +35,11 @@ export function encode(...string: string[]) {
 	let command = '';
 
 	for (let i = 0; i < string.length; i++) {
-		let current = string[i];
-		command += current.toString().length + '.' + current;
-		command += i < string.length - 1 ? ',' : ';';
+        let current = string[i];
+		//some checks (modified from original)
+        if (current === undefined || current === null) current = '';
+        const str = current.toString();
+        command += str.length + '.' + str;
+        command += i < string.length - 1 ? ',' : ';';
 	} return command;
 }
