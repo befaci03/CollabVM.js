@@ -9,7 +9,7 @@ import { Rank, LoginRankRes } from '../enums/Rank.js';
 import { OPCodeClient, OPCodeServer } from '../enums/AdminOpcodes.js';
 
 export class Client {
-    private log: Logger;
+    private log: Logger;// maybe use it?
     private events: Map<string, (...args: any[]) => void> = new Map();
     
     private _ws: WebSocket.client;
@@ -21,6 +21,7 @@ export class Client {
     private _orgn: string|undefined;
 
     public username: string;
+    //TODO public rank: Rank = 0;
     public connected: boolean = false;
 
     public connectedUsers: User[] = [];
@@ -68,7 +69,10 @@ export class Client {
                         if(parseFloat(msg[1]) > 1) break;//idk
                         const unam = msg[2];
 
-                        this.connectedUsers = this.connectedUsers.filter((u) => u.username !== unam);
+                        console.debug(this.connectedUsers);
+                        const newValue = this.connectedUsers.filter((u) => u.username !== unam)
+                        this.connectedUsers = newValue;
+                        console.debug(this.connectedUsers);
                         this.events.get("left")?.(unam);
                         break;
                     case "size":
@@ -164,12 +168,12 @@ export class Client {
         switch (type) {
             case "left":         _t = "1";  break;
             case "middle":       _t = "2";  break;
-            case "right":        _t = "3";  break;
-            case "scrollup":     _t = "4";  break;
-            case "scrolldown":   _t = "5";  break;
-            case "scrollleft":   _t = "6";  break;
-            case "scrollright":  _t = "7";  break;
-            case "back":         _t = "8";  break;
+            case "right":        _t = "4";  break;
+            case "scrollup":     _t = "8";  break;
+            case "scrolldown":   _t = "16";  break;
+            case "scrollleft":   _t = "32";  break;
+            case "scrollright":  _t = "64";  break;
+            case "back":         _t = "128";  break;
         }
         this.sendPacket('mouse', x.toString(), y.toString(), _t);
     }
@@ -180,10 +184,10 @@ export class Client {
     }
 
     public reboot() {
-        this.sendPacket('admin', String(OPCodeClient.Reboot));
+        this.sendPacket('admin', String(OPCodeClient.Reboot), this.node);
     }
     public restore() {
-        this.sendPacket('admin', String(OPCodeClient.Restore));
+        this.sendPacket('admin', String(OPCodeClient.Restore), this.node);
     }
 
     public banUser(username: string) {
@@ -222,9 +226,8 @@ export class Client {
     }
     // befaci: for god sakes never run "nmi"
     public async qemuCommand(cmd: string): Promise<string|null> {
-        // TODO: return the output
         return new Promise((resolve, reject) => {
-            this.sendPacket('admin', String(OPCodeClient.QEMU), cmd);
+            this.sendPacket('admin', String(OPCodeClient.QEMU), this.node, cmd);
 
             const listener = (d: WebSocket.Message) => {
                 if (d.type !== "utf8") return;

@@ -1,9 +1,9 @@
 {
   "name": "collabvm.js",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "description": "Use discord.js but easily for beginners",
+  "description": "Make CollabVM bots with Javascript!",
   "keywords": [
     "collabvm",
     "computernewb",

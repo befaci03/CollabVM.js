@@ -1,16 +1,15 @@
 const { Client, Guacamole } = require('../dist/index');
-var cvm = new Client("wss://computernewb.com/collab-vm/vm1", "vm1", "testbot", "computernewb.com");
+var cvm = new Client("wss://creepervm.gunawan092w.eu.org/vms/vm2", "creepervm2", "BefaBot", "https://creepervm.gunawan092w.eu.org");
 
 cvm.on('connect', () => {
     console.log('connected')
     // true means thats the bot token
     //(only enable if its an auth server)
     // and vice versa for false
-    cvm.login('TOKEN_HERE', true);
-    cvm.sendMessage(`CollabVM.js v${require('../package.json').version} [TEST BOT]`);
+    cvm.login('no', true);
     setTimeout(() => {
-        cvm.banUser("fuckiefunkyassguest");
-    }, 2000);
+        cvm.sendMessage(cvm.connectedUsers);
+    }, 1000);
 });
 cvm.on('error', console.error)
 cvm.on('close', console.warn("Disconnected"))
